@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DashSpeak Prototype</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap" rel="stylesheet">
+  <style>
+    /* BASE THEME (LIGHT) */
+    :root {
+      --c-background: #FFFFFF;
+      
+      --c-text-primary: #17417D;
+      --c-text-secondary: #1761C2;
+      --c-text-disabled: rgba(39, 146, 214, 0.4);
+      --c-text-white: #FFFFFF;
+      --c-text-critical: #EF4444;
+      --c-text-warning: #FB923C;
+
+      --c-btn-primary-bg: #2792D6;
+      --c-btn-primary-text: #FFFFFF;
+      --c-btn-secondary-border: #2792D6;
+      --c-btn-secondary-text: #2792D6;
+      --c-btn-secondary-bg: #FFFFFF;
+      --c-btn-nav-bg: #1761C2;
+      --c-btn-nav-text: #FFFFFF;
+      --c-btn-disabled-bg: #8BE0FD;
+      --c-btn-disabled-text: #FFFFFF;
+
+      --c-card-base: #FFFFFF;
+      --c-card-highlight: #D4F6F5;
+      --c-card-system: rgba(139, 224, 253, 0.25);
+      --c-card-border: #D4F6F5;
+      --c-card-shadow: rgba(23, 65, 125, 0.1);
+
+      --c-icon-default: #1761C2;
+      --c-icon-secondary: #2792D6;
+      --c-icon-disabled: #8BE0FD;
+      --c-icon-warning: #FB923C;
+      --c-icon-critical: #EF4444;
+      --c-icon-white: #FFFFFF;
+
+      --c-state-warning: #FB923C;
+      --c-state-warning-bg: #FFF7ED;
+      --c-state-critical: #EF4444;
+      --c-state-critical-bg: #FEF2F2;
+
+      --c-divider: #D4F6F5;
+    }
+
+    body { font-family: 'Assistant', sans-serif; background-color: var(--c-background); transition: background-color 0.3s ease, color 0.3s ease; }
+    
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .scrollbar-visible {
+      scrollbar-width: auto;
+      scrollbar-color: var(--c-icon-secondary) var(--c-card-highlight);
+    }
+    .scrollbar-visible::-webkit-scrollbar {
+      width: 16px;
+    }
+    .scrollbar-visible::-webkit-scrollbar-track {
+      background: var(--c-card-highlight);
+      border-radius: 8px;
+      margin: 16px 0; 
+    }
+    .scrollbar-visible::-webkit-scrollbar-thumb {
+      background-color: var(--c-icon-secondary);
+      border-radius: 8px;
+      border: 3px solid var(--c-card-highlight);
+    }
+    .scrollbar-visible::-webkit-scrollbar-thumb:hover {
+      background-color: var(--c-icon-default);
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.35.0",
+    "lucide-react": "https://esm.sh/lucide-react@0.460.0"
+  }
+}
+</script>
+</head>
+<body class="overflow-hidden">
+  <div id="root"></div>
+</body>
+</html>

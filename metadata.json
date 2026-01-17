@@ -1,0 +1,7 @@
+{
+  "name": "DashSpeak",
+  "description": "An elderly-focused in-car HMI prototype for real-time vehicle issue analysis and guided emergency response with multi-section voice assistance.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
