@@ -88,6 +88,46 @@ const DrivingScreen: React.FC<DrivingScreenProps> = ({ onTriggerIssue, onOpenNot
 
       {/* Header Bar */}
       <div className="absolute top-0 left-0 right-0 p-8 flex justify-between items-center z-20">
+        {/* Simulate Button & Menu */}
+        <div className="relative">
+          <button 
+            onClick={() => setShowSimMenu(!showSimMenu)}
+            className="h-20 w-20 rounded-[2.5rem] shadow-lg border-2 flex items-center justify-center active:scale-90 transition-transform"
+            style={{ 
+              backgroundColor: showSimMenu ? COLORS.text.primary : COLORS.card.base,
+              borderColor: COLORS.card.border 
+            }}
+          >
+            {showSimMenu ? (
+              <X className="w-8 h-8" style={{ color: COLORS.text.white }} />
+            ) : (
+              <Zap className="w-8 h-8" style={{ color: COLORS.state.warning }} fill="currentColor" />
+            )}
+          </button>
+
+          {/* Simulation Menu Dropdown */}
+          {showSimMenu && (
+            <div className="absolute top-24 left-0 w-64 bg-white rounded-3xl shadow-2xl p-4 border-2 flex flex-col gap-3 animate-in fade-in slide-in-from-top-4 z-50">
+              <p className="text-xs font-bold uppercase tracking-widest ml-2 mb-1" style={{color: COLORS.text.disabled}}>Simulate Issue</p>
+              {Object.values(ISSUES).map((issue) => (
+                <button
+                  key={issue.id}
+                  onClick={() => {
+                    onTriggerIssue(issue);
+                    setShowSimMenu(false);
+                  }}
+                  className="p-4 rounded-2xl text-left font-bold text-sm transition-colors flex items-center gap-3"
+                  style={{ backgroundColor: COLORS.card.highlight, color: COLORS.text.primary }}
+                >
+                  <div className={`w-3 h-3 rounded-full ${issue.severity === IssueSeverity.CRITICAL ? 'bg-red-500' : 'bg-orange-400'}`} />
+                  {issue.title}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Settings Button */}
         <button 
           onClick={onOpenSettings}
           className="h-20 px-10 rounded-[2.5rem] shadow-lg border-2 flex items-center justify-center gap-4 active:scale-90 transition-transform"
@@ -99,69 +139,6 @@ const DrivingScreen: React.FC<DrivingScreenProps> = ({ onTriggerIssue, onOpenNot
           <Settings className="w-8 h-8" strokeWidth={2.5} style={{ color: COLORS.icon.default }} />
           <span className="text-xl font-black tracking-tight" style={{ color: COLORS.text.primary }}>Settings</span>
         </button>
-        
-        {/* Simulate Button (Top Right) */}
-        <div className="relative">
-          <button 
-            onClick={() => setShowSimMenu(!showSimMenu)}
-            className="w-20 h-20 rounded-full shadow-2xl border-2 flex items-center justify-center transition-all active:scale-90"
-            style={{ 
-              backgroundColor: showSimMenu ? COLORS.text.primary : COLORS.background,
-              borderColor: showSimMenu ? COLORS.text.primary : COLORS.card.border,
-              color: showSimMenu ? COLORS.text.white : COLORS.icon.secondary
-            }}
-          >
-            {showSimMenu ? <X className="w-8 h-8" /> : <Zap className="w-8 h-8 fill-current" />}
-          </button>
-
-          {/* Simulate Menu */}
-          {showSimMenu && (
-            <div 
-              className="absolute top-24 right-0 w-72 backdrop-blur-md p-5 rounded-[2.5rem] shadow-2xl border animate-[pop_0.2s_ease-out] origin-top-right"
-              style={{ 
-                backgroundColor: COLORS.card.base, 
-                borderColor: COLORS.card.border 
-              }}
-            >
-               <div className="flex items-center justify-between mb-4 px-1">
-                 <div className="flex items-center gap-2">
-                   <Zap className="w-4 h-4" style={{ color: COLORS.icon.secondary }} />
-                   <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: COLORS.text.secondary }}>Simulate</p>
-                 </div>
-               </div>
-               
-               <div className="flex gap-3">
-                <button 
-                  onClick={() => {
-                    onTriggerIssue(ISSUES.ENGINE_TEMP);
-                    setShowSimMenu(false);
-                  }}
-                  className="flex-1 flex flex-col items-center gap-2 p-4 rounded-[1.5rem] border-2 border-transparent transition-all shadow-sm"
-                  style={{ backgroundColor: COLORS.state.criticalBg }}
-                >
-                  <div className="w-8 h-8">
-                    <VehicleIcon id="engine_temp" color={COLORS.state.critical} />
-                  </div>
-                  <span className="text-[10px] font-black leading-tight text-center" style={{ color: COLORS.state.critical }}>Engine<br/>Heat</span>
-                </button>
-                
-                <button 
-                  onClick={() => {
-                    onTriggerIssue(ISSUES.TIRES);
-                    setShowSimMenu(false);
-                  }}
-                  className="flex-1 flex flex-col items-center gap-2 p-4 rounded-[1.5rem] border-2 border-transparent transition-all shadow-sm"
-                  style={{ backgroundColor: COLORS.state.warningBg }}
-                >
-                  <div className="text-4xl w-8 h-8">
-                    <VehicleIcon id="tires" color={COLORS.state.warning} />
-                  </div>
-                  <span className="text-[10px] font-black leading-tight text-center" style={{ color: COLORS.state.warning }}>Low<br/>Tires</span>
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
       </div>
 
       {/* Main Content Area */}

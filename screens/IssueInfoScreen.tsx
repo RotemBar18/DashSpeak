@@ -95,19 +95,6 @@ const IssueInfoScreen: React.FC<IssueInfoScreenProps> = ({ issue, onBack }) => {
             </div>
           </section>
 
-          {/* Safety Disclaimer Card */}
-          <div className="p-6 rounded-3xl space-y-3 shadow-lg relative overflow-hidden mb-4" style={{ backgroundColor: COLORS.text.primary, color: COLORS.text.white }}>
-            <div className="absolute top-0 right-0 p-4 opacity-10">
-              <AlertCircle className="w-32 h-32" />
-            </div>
-            <div className="flex justify-between items-center relative z-10">
-              <h4 className="text-xl font-black tracking-tight">Safety Protocol</h4>
-              <VoiceButton text="If you feel unsafe at any time, stop in a safe place and call for help." />
-            </div>
-            <p className="text-base font-medium opacity-90 leading-relaxed relative z-10 pr-2">
-              Your safety is our priority. If you feel at risk, discontinue operation immediately.
-            </p>
-          </div>
           
           <div className="h-2"></div>
       </div>

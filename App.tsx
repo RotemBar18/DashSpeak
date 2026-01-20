@@ -55,6 +55,10 @@ const AppContent: React.FC = () => {
     }
   }, []);
 
+  const deleteNotification = useCallback((index: number) => {
+    setNotificationHistory(prev => prev.filter((_, i) => i !== index));
+  }, []);
+
   // One-time auto-simulation logic (Engine Overheating after 5 seconds)
   useEffect(() => {
     if (currentScreen === Screen.DRIVING && !hasAutoSimulated && !autoSimQueued.current) {
@@ -112,6 +116,7 @@ const AppContent: React.FC = () => {
             history={notificationHistory}
             onBack={() => navigateTo(Screen.DRIVING)}
             onClear={() => setNotificationHistory([])}
+            onDelete={deleteNotification}
             onSelectIssue={(selectedIssue) => {
               // Navigate to the Alert Screen (Issue Page) instead of Info Screen (Instruction Page)
               const targetScreen = selectedIssue.severity === IssueSeverity.CRITICAL 
